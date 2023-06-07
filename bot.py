@@ -1,7 +1,6 @@
 import discord
 import responses
-
-TOKEN = 'MTEwNTU1MzMzMjQ4MDc3ODI4MA.GjzkgS.MPHHjHsCw1P7OH7_tViFhgAzgmPcgcUNIjBfJ0'
+import hiddenData
 
 async def send_message(message, user_message, is_private):
   try:
@@ -12,7 +11,7 @@ async def send_message(message, user_message, is_private):
     print(e)
 
 def run_discord_bot():
-  TOKEN = 'MTEwNTU1MzMzMjQ4MDc3ODI4MA.Gz15Hg.qJ_VTElBOdglIh6gTeGeFhXEzfklpvNVoXFdE0'
+  TOKEN = hiddenData.HIDDEN_TOKEN
   intents = discord.Intents.default()
   intents.message_content = True
   client = discord.Client(intents=intents)

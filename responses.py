@@ -14,11 +14,14 @@ def get_response(message: str) -> str:
 
   if p_message.startswith('crypto'):
     coin_name = p_message.split(' ')[-1].upper()
-    response = requests.get('https://data.binance.com/api/v3/avgPrice', params = {'symbol' : f'{coin_name}USDT'}).text
-    jason_text = json.loads(response)
+    jason_text = make_request(coin_name)
     if 'price' in jason_text:
       price = jason_text["price"]
       return (f'{coin_name} tiene un valor de {float(price):.2f}$')
-    return (f"No he encontrado tu moneda.")    
+    return (f"No he encontrado tu moneda.")
 
   return (f"No entiendo lo que quieres decir con '{p_message}'. Prueba a escribir '!help'")
+
+def make_request(coin_name: str) -> any:
+  response = requests.get('https://data.binance.com/api/v3/avgPrice', params = {'symbol' : f'{coin_name}USDT'}).text
+  return json.loads(response)
